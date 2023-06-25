@@ -21,3 +21,5 @@ const mockUsers = () => {
   }
 };
 
+mockUsers();
+

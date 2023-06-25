@@ -1,3 +1,4 @@
+const functions = require('firebase-functions');
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const {
@@ -5,6 +6,9 @@ const {
   schemas,
   contextHandler
 } = require('./graphql');
+
+// Populate datasources with mock data
+require('./scripts/mock-data');
 
 const app = express();
 
@@ -15,11 +19,12 @@ const apolloServer = new ApolloServer({
   context: contextHandler,
 
   // Graphiql
+  endpoint:'/graphql',
   introspection: true,
   playground: true
 });
 
-apolloServer.start({ app });
-
 // Integrate GraphQL server with Express
-apolloServer.applyMiddleware({ app });
+apolloServer.applyMiddleware({ app, path: '/', cors: true });
+
+exports.graphql = functions.https.onRequest(app);
