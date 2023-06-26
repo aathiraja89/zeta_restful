@@ -9,7 +9,6 @@ const {
   contextHandler
 } = require('./graphql');
 
-const helmet = require('helmet');
 const http = require('http');
 const mapRoutes = require('express-routes-mapper');
 
@@ -31,13 +30,6 @@ const mappedRoutes = mapRoutes(config.publicRoutes, 'controllers/');
 // allow cross origin requests
 // configure to allow only requests from certain origins
 app.use(cors());
-
-// secure express app
-app.use(helmet({
-  dnsPrefetchControl: false,
-  frameguard: false,
-  ieNoOpen: false,
-}));
 
 // parsing the request bodys
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -63,7 +55,7 @@ const apolloServer = new ApolloServer({
 // Integrate GraphQL server with Express
 apolloServer.applyMiddleware({
   app,
-  path: '/',
+  path: '/graphql',
   cors: {
     origin: true,
     credentials: true,
