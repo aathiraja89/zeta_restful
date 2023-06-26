@@ -1,4 +1,10 @@
 {
+  "emulators": {
+    "ui": {
+      "enabled": true,
+      "port": 4040
+    }
+  },
   "functions":
     {
       "source": ".",
