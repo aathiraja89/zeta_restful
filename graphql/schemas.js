@@ -23,6 +23,7 @@ const schemas = gql`
   input UserInput {
     fullname: String!
     email: String!
+    password: String!
   }
 `;
 

@@ -21,8 +21,8 @@ const getById = (id) => users.get(id);
  */
 const create = (input) => {
   const id = uuidv4();
-  const { fullname, email } = input;
-  const newUser = new User({ id, fullname, email });
+  const { fullname, email, password } = input;
+  const newUser = User({ id, fullname, email, password });
   users.set(id, newUser);
 
   return newUser;

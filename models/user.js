@@ -1,12 +1,11 @@
 const { users } = require('./data');
+const bcryptSevice = require('../services/bcrypt.service');
 
-/**
- * Represents the User identity
- */
-class User {
-  constructor (data) {
-    Object.assign(this, data);
-  }
+const User = (data) => {
+  data.password = bcryptSevice().password(data.password); // eslint-disable-line no-param-reassign
+  const values = Object.assign({}, data);
+  delete values.password;
+  return values;
 }
 
 module.exports = {
