@@ -1,3 +1,5 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+const { HttpQueryError } = require('apollo-server-core');
 const { v4: uuidv4 } = require('uuid');
 
 const { users, User } = require('../models/user');
@@ -23,6 +25,10 @@ const getById = (id) => users.get(id);
 const create = (input) => {
   const id = uuidv4();
   const { fullname, email, password } = input;
+  if (!email) {
+    // eslint-disable-next-line no-throw-literal
+    throw new HttpQueryError('Required query params missing');
+  }
   const newUser = User({
     id, fullname, email, password,
   });
