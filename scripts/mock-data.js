@@ -3,7 +3,7 @@ const { v4: uuidv4 } = require('uuid');
 const { users } = require('../models/data');
 const { User } = require('../models');
 
-const FAKE_USERS_AMOUNT = 20;
+const FAKE_USERS_AMOUNT = 3;
 
 /**
  * Populate the users datasource with mock users.
@@ -14,10 +14,11 @@ const mockUsers = () => {
     const fakeUser = {
       id,
       fullname: faker.name.findName(),
+      password: faker.internet.password(),
       email: faker.internet.email(),
     };
 
-    users.set(id, new User(fakeUser));
+    users.set(id, User(fakeUser));
   }
 };
 
