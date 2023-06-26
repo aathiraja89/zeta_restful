@@ -1,0 +1,10 @@
+{
+    "dif": true,
+    "extension": ["js"],
+    "package": "../../package.json",
+    "color": true,
+    "require": ["@babel/register", "test/unit/helper.js"],
+    "ignore": "node_modules",
+    "reporter": "spec",
+    "slow": 5000
+}
