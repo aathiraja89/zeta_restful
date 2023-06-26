@@ -1,4 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
+
 const { users, User } = require('../models/user');
 
 /**
@@ -22,18 +23,20 @@ const getById = (id) => users.get(id);
 const create = (input) => {
   const id = uuidv4();
   const { fullname, email, password } = input;
-  const newUser = User({ id, fullname, email, password });
+  const newUser = User({
+    id, fullname, email, password,
+  });
   users.set(id, newUser);
 
   return newUser;
-}
+};
 
 /**
  * Remove an User with the given id
  * @param {string} id UUID of the User to be removed
  * @returns {boolean} true if the User was removed, otherwise false
  */
- const remove = (id) => {
+const remove = (id) => {
   if (!users.has(id)) {
     return false;
   }
@@ -45,5 +48,5 @@ module.exports = {
   index,
   getById,
   create,
-  remove
+  remove,
 };

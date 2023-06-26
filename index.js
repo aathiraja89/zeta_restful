@@ -1,21 +1,22 @@
-const functions = require('firebase-functions');
+/* eslint-disable import/no-extraneous-dependencies */
+const http = require('http');
+
+const { ApolloServer } = require('apollo-server-express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const {
-  resolvers,
-  schemas,
-  contextHandler
-} = require('./graphql');
-
-const http = require('http');
 const mapRoutes = require('express-routes-mapper');
+const functions = require('firebase-functions');
 
 /**
  * server configuration
  */
-const config = require('./config/');
+const config = require('./config');
+const {
+  resolvers,
+  schemas,
+  contextHandler,
+} = require('./graphql');
 const auth = require('./policies/auth.policy');
 
 // Populate datasources with mock data
@@ -49,7 +50,7 @@ const apolloServer = new ApolloServer({
 
   // Graphiql
   introspection: true,
-  playground: true
+  playground: true,
 });
 
 // Integrate GraphQL server with Express
@@ -76,6 +77,7 @@ server.listen(4041, 'localhost', () => {
     && environment !== 'development'
     && environment !== 'testing'
   ) {
+    // eslint-disable-next-line no-console
     console.error(`NODE_ENV is set to ${environment}, but only production and development are valid.`);
     process.exit(1);
   }

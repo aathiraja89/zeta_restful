@@ -7,6 +7,7 @@
   "scripts": {
     "server": "node index.js",
     "start": "firebase emulators:start",
+    "lint": "eslint .",
     "test:unit": "mocha --config=test/unit/.mocharc.json --node-env=test --exit --require @babel/register test/unit/**/*.spec.js"
   },
   "engines": {
@@ -38,6 +39,12 @@
     "@babel/node": "^7.22.5",
     "@babel/preset-env": "^7.22.5",
     "@babel/register": "^7.22.5",
+    "eslint": "^7.32.0 || ^8.2.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsx-a11y": "^6.5.1",
+    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react-hooks": "^4.3.0",
     "firebase-functions-test": "^0.2.0"
   },
   "private": true
