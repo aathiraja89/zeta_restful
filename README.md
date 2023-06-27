@@ -78,14 +78,20 @@ This boilerplate has these main directories:
 - services - for signing and verifying JWT tokens
 - test - using [Jest](https://github.com/facebook/jest) to validate controllers
 
-![Token Expired](https://drive.google.com/file/d/1NnFBvSg8IB5E2TrB2l1d692Yd-iLxSRk/view)
+> ```Token Expired```
+![Token Expired](https://drive.google.com/uc?export=view&id=1NnFBvSg8IB5E2TrB2l1d692Yd-iLxSRk)
 
-![Get All Users](https://drive.google.com/file/d/19f3BFFARq56T1-2Nk5oGT0AbEOoUO2Fy/view?usp=drive_link)
+> ```Get All Users```
+![Get All Users](https://drive.google.com/uc?export=view&id=19f3BFFARq56T1-2Nk5oGT0AbEOoUO2Fy)
 
-![Create User](https://drive.google.com/file/d/1-H2TfskifbXi9Pfv1DPxey-fHvmM1l0A/view?usp=drive_link)
+> ```Create User```
+![Create User](https://drive.google.com/uc?export=view&id=1-H2TfskifbXi9Pfv1DPxey-fHvmM1l0A)
 
-![Get All Users](https://drive.google.com/file/d/1b_2MxamyMQMelLMAhK7vf6hveVsjRvkC/view?usp=drive_link)
+> ```Get All Users```
+![Get All Users](https://drive.google.com/uc?export=view&id=1b_2MxamyMQMelLMAhK7vf6hveVsjRvkC)
 
-![Get User By ID](https://drive.google.com/file/d/14RgXjUFGWgdnFaoTxhWoGV6FZBKd1ViU/view?usp=drive_link)
+> ```Get User By ID```
+![Get User By ID](https://drive.google.com/uc?export=view&id=14RgXjUFGWgdnFaoTxhWoGV6FZBKd1ViU)
 
-![Delete User](https://drive.google.com/file/d/1MFCHpmrL48ZCmcqIMtkkTbEtERuoKGmF/view?usp=drive_link)
+> ```Delete User```
+![Delete User](https://drive.google.com/uc?export=view&id=1MFCHpmrL48ZCmcqIMtkkTbEtERuoKGmF)
