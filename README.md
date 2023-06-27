@@ -19,18 +19,23 @@ $ cd zeta_restful
 # install dependencies
 $ npm i
 # start application
-$ npm server
+$ npm run server
 # create a User via the REST API
 $ curl -H "Content-Type: application/json" -X POST -d '{"email":"test@mail.com","password":"pw","password2":"pw"}' http://localhost:4041/rest/register
 # login a User via the REST API
 # you will get a JSON with a token and this is your token to get access to the GraphQL API
-$ curl -H "Content-Type: application/json" -X POST -d '{"email":"test@mail.com","password":"pw"}' http://localhost:4041/rest/login
-# requesting a User via the GraphQL API
-$ curl -i -H "Content-Type:application/json" -H "Authorization: Bearer <token>" -X POST -d '{"query": "{user{id, username}}"}'  http://localhost:4041/graphql
-# creating a Note for a user via the GraphQL API
-$ curl -i -H "Content-Type:application/json" -H "Authorization: Bearer <token>" -X POST -d '{"query": "mutation{createNote(userId:1,note:\"this is a note\"){id,userId,note}}"}' http://localhost:4041/graphql
-# requesting a User with its Notes via the GraphQL API (nested Query)
-$ curl -i -H "Content-Type:application/json" -H "Authorization: Bearer <token>" -X POST -d '{"query": "{user{id, username, notes{id, note}}}"}'  http://localhost:4041/graphql
+
+# Query all Users via the GraphQL API
+$ curl 'http://localhost:4041/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:4041' -H 'Authorization: Bearer <token>' --data-binary '{"query":"query User {\n  users {\n    id\n    email\n    fullname\n  }\n}\n"}' --compressed
+
+# Mutation - Create an User via the GraphQL API
+$ curl 'http://localhost:4041/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:4041' -H 'Authorization: Bearer <token>' --data-binary '{"query":"mutation {\n  createUser(input: {\n    fullname: \"aathi\",\n    email: \"aathi@yopmail.com\",\n    password: \"test1234\"\n  }) {\n    id\n  }\n}"}' --compressed
+
+# Query for an User by Id via the GraphQL API
+$ curl 'http://localhost:4041/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:4041' -H 'Authorization: Bearer <token>' --data-binary '{"query":"query User($id: ID!) {\n  user(id: $id) {\n    id\n    email\n  }\n}\n","variables":{"id":"b49708bc-e05c-481a-9cf9-597cb83a3d01"}}' --compressed
+
+# Mutation - Delete an User by Id via the GraphQL API
+$ curl 'http://localhost:4041/graphql' -H 'Accept-Encoding: gzip, deflate, br' -H 'Content-Type: application/json' -H 'Accept: application/json' -H 'Connection: keep-alive' -H 'DNT: 1' -H 'Origin: http://localhost:4041' -H 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2ODc4MzkyNTYsImV4cCI6MTY4Nzg1MDA1Nn0.G7U1M04cn7g7isLw9UeigNALGSCcALBbLSZdIn8QSx8' --data-binary '{"query":"mutation User($id: ID!) {\n  removeUser(id: $id)\n}","variables":{"id":"b49708bc-e05c-481a-9cf9-597cb83a3d01"}}' --compressed
 ```
 
 ## Install and Use
@@ -62,7 +67,7 @@ $ yarn
 
 ## Folder Structure
 
-This boilerplate has four main directories:
+This boilerplate has these main directories:
 
 - config - for routes
 - controllers - for Auth, app controllers
@@ -73,3 +78,14 @@ This boilerplate has four main directories:
 - services - for signing and verifying JWT tokens
 - test - using [Jest](https://github.com/facebook/jest) to validate controllers
 
+![Token Expired](https://drive.google.com/file/d/1NnFBvSg8IB5E2TrB2l1d692Yd-iLxSRk/view)
+
+![Get All Users](https://drive.google.com/file/d/19f3BFFARq56T1-2Nk5oGT0AbEOoUO2Fy/view?usp=drive_link)
+
+![Create User](https://drive.google.com/file/d/1-H2TfskifbXi9Pfv1DPxey-fHvmM1l0A/view?usp=drive_link)
+
+![Get All Users](https://drive.google.com/file/d/1b_2MxamyMQMelLMAhK7vf6hveVsjRvkC/view?usp=drive_link)
+
+![Get User By ID](https://drive.google.com/file/d/14RgXjUFGWgdnFaoTxhWoGV6FZBKd1ViU/view?usp=drive_link)
+
+![Delete User](https://drive.google.com/file/d/1MFCHpmrL48ZCmcqIMtkkTbEtERuoKGmF/view?usp=drive_link)
